@@ -133,7 +133,7 @@ function App() {
         presupuesto: presupuestoLS,
         gastos: localGastos
       }
-      console.log(newGastos);
+      
       await saveCloud(newGastos);
     };
   

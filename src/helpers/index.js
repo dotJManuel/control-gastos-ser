@@ -94,9 +94,6 @@ export const obtenerDatos = async () => {
   }
 
   export const saveCloud = async (datos) => {
-    console.log('from saveCloud');
-    console.log(datos);
-
     try {
       const response = await fetch('/.netlify/functions/fetchGistSaveData', {
         method: 'POST',

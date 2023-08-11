@@ -11,25 +11,24 @@ exports.handler = async (event) => {
     const GIT_API = `https://api.github.com/gists/${gistId}`
   
     try {
-      const response = await fetch(GIT_API, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${tkn.replace(/1998/g, '')}`,
-        },
-      });
+        const response = await fetch(GIT_API, {
+            headers: {
+                Authorization: `Bearer ${tkn.replace(/1998/g, '')}`,
+            },
+        })
   
       const gist = await response.json();
       const archivo = gist.files[gistFilename];
       const contenido = JSON.stringify(datos);
-  
+         
       if (archivo) {
         // Actualizar el contenido del archivo existente
         const actualizarUrl = `https://api.github.com/gists/${gistId}`;
-        const actualizarResponse = await fetch(actualizarUrl, {
-          method: 'PATCH',
+        const actualizarResponse = await fetch(GIT_API, {
+          method: 'POST',
           headers: {
             Authorization: `Bearer ${tkn.replace(/1998/g, '')}`,
-            'Content-Type': 'application/json',
+            //'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             files: {

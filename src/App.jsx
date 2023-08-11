@@ -179,16 +179,6 @@ function App() {
         </>
       )}
 
-      {modal && <Modal
-        setModal={setModal}
-        animarModal={animarModal}
-        setAnimarModal={setAnimarModal}
-        guardarGasto={guardarGasto}
-        gastoEditar={gastoEditar}
-        setGastoEditar={setGastoEditar}
-      />
-      }
-
       <div className='sincronizar'>
         <img
           src={IconSync}
@@ -204,6 +194,16 @@ function App() {
           onClick={handleSaveCloud}
         />
       </div>
+
+      {modal && <Modal
+          setModal={setModal}
+          animarModal={animarModal}
+          setAnimarModal={setAnimarModal}
+          guardarGasto={guardarGasto}
+          gastoEditar={gastoEditar}
+          setGastoEditar={setGastoEditar}
+        />
+      }
 
       {messageSuccess && <ResponseMessage tipo="success" >{messageSuccess}</ResponseMessage>}
       {messageError && <ResponseMessage tipo="error" >{messageError}</ResponseMessage>}

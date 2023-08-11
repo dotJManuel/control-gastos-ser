@@ -86,15 +86,35 @@ export const obtenerDatos = async () => {
       console.error('Error al guardar los datos en el Gist:', error);
     }
   };
-  
-  export const responseF = async () => {
-    return await fetch('/.netlify/functions/hello-world')
-      .then(response => response.json()
-    )
-  }
 
   export const responseGit = async () => {
     return await fetch('/.netlify/functions/fetchGistData')
       .then(response => response.json()
     )
   }
+
+  export const saveCloud = async (datos) => {
+    console.log('from saveCloud');
+    console.log(datos);
+
+    try {
+      const response = await fetch('/.netlify/functions/fetchGistSaveData', {
+        method: 'POST',
+        headers: {
+          
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message);
+      } else {
+        const error = await response.json();
+        console.error(error.error);
+      }
+    } catch (error) {
+      console.error('Error al llamar a la función serverless:', error);
+    }
+  };

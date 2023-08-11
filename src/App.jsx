@@ -4,7 +4,7 @@ import Header from "./components/Header"
 import ListadoGastos from './components/ListadoGastos'
 import Filtros from './components/Filtros'
 import Modal from './components/Modal'
-import { generarId, obtenerDatos, guardarDatos, responseF, responseGit } from './helpers'
+import { generarId, saveCloud, responseGit } from './helpers'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 import IconSync from './img/icon_sync.svg'
 import IconSaveCloud from './img/icon-download.svg'
@@ -133,8 +133,8 @@ function App() {
         presupuesto: presupuestoLS,
         gastos: localGastos
       }
-      
-      await guardarDatos(newGastos);
+      console.log(newGastos);
+      await saveCloud(newGastos);
     };
   
     guardarGastos();

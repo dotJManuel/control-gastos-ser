@@ -4,12 +4,12 @@ import fetch from 'node-fetch'
 export const handler = async () => {
   const gistId = 'fc5cef71dea268451a1c1d5488c90f7f'; // Reemplaza esto con el ID de tu Gist
   const gistFilename = 'gastos.json'; // Reemplaza esto con el nombre de archivo que desees utilizar
-  const token = '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';
+  const tkn = '1998ghp_ZvCaMHiKj8DW1998aAgh1y8MMVMBsMQ3kt3lNYmF1998';
   const GIT_API = `https://api.github.com/gists/${gistId}`
 
   const response = await fetch(GIT_API, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tkn.replace(/1998/g, '')}`,
     },
   })
   

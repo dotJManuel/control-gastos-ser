@@ -12,17 +12,6 @@ import IconSaveCloud from './img/icon-download.svg'
 
 function App() {
 
-  // const [gastos, setGastos] = useState([]);
-
-  // useEffect(() => {
-  //   const obtenerGastos = async () => {
-  //     const datos = await obtenerDatos();
-  //     setGastos(datos);
-  //   };
-    
-  //   obtenerGastos();
-  // }, []);
-
   const [gastos, setGastos] = useState(
     localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')) : []
   )
@@ -57,15 +46,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem('gastos', JSON.stringify(gastos) ?? [])
   }, [gastos])
-
-  // useEffect(() => {
-  //   const guardarGastos = async () => {
-  //     await guardarDatos(gastos);
-  //   };
-  
-  //   guardarGastos();
-  // }, [gastos]);
-  
 
   useEffect(() => {
     if (filtro) {

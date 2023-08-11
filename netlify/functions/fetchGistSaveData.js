@@ -7,7 +7,7 @@ exports.handler = async (event) => {
     console.log(datos);
     const gistId = 'fc5cef71dea268451a1c1d5488c90f7f';
     const gistFilename = 'gastos.json'; 
-    const tkn = '1998ghp_ZvCaMHiKj8DW1998aAgh1y8MMVMBsMQ3kt3lNYmF1998';
+    const tkn = '1998ghp_F0WdvXjYu1998tkKH310u0m4C4j266ilZ1998V2ze17Y1998';
     const GIT_API = `https://api.github.com/gists/${gistId}`
   
     try {

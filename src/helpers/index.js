@@ -107,9 +107,11 @@ export const obtenerDatos = async () => {
       if (response.ok) {
         const result = await response.json();
         console.log(result.message);
+        return result;
       } else {
         const error = await response.json();
         console.error(error.error);
+        return error;
       }
     } catch (error) {
       console.error('Error al llamar a la función serverless:', error);

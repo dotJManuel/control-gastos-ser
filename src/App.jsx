@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import ListadoGastos from './components/ListadoGastos'
 import Filtros from './components/Filtros'
 import Modal from './components/Modal'
+import ResponseMessage from './components/ResponseMessage';
 import { generarId, saveCloud, responseGit } from './helpers'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 import IconSync from './img/icon_sync.svg'
@@ -35,6 +36,8 @@ function App() {
   const [gastoEditar, setGastoEditar] = useState({})
   const [filtro, setFiltro] = useState('')
   const [gastosFiltrados, setGastosFiltrados] = useState([])
+  const [messageSuccess, setMessageSuccess] = useState('');
+  const [messageError, setMessageError] = useState('');
 
   useEffect(() => {
 
@@ -113,11 +116,21 @@ function App() {
   const handleSincronizar = () => {
     const obtenerGastos = async () => {
       const response = await responseGit();
-      console.log(response);
-      const presupuesto = Number(response.datos.presupuesto);
+      const presupuesto = Number(response.data.presupuesto);
+
       setValidPresupuesto(presupuesto <= 0 ? false : true);
       setPresupuesto(presupuesto);
-      setGastos(response.datos.gastos);
+      setGastos(response.data.gastos);
+
+      if(response.code === 200)
+        setMessageSuccess("Success");
+      else
+        setMessageError("Error");
+
+      setTimeout(function () {
+        setMessageSuccess('');
+        setMessageError('');
+      }, 3000);
     };
     
     obtenerGastos();
@@ -133,8 +146,18 @@ function App() {
         presupuesto: presupuestoLS,
         gastos: localGastos
       }
-      
-      await saveCloud(newGastos);
+
+      const response = await saveCloud(newGastos);
+      console.log(response);
+      if(response.code === 200)
+        setMessageSuccess("Success");
+      else 
+        setMessageError('Error');
+
+      setTimeout(function () {
+        setShowResponse('');
+        setMessageError('');
+      }, 3000);
     };
   
     guardarGastos();
@@ -201,6 +224,9 @@ function App() {
           onClick={handleSaveCloud}
         />
       </div>
+
+      {messageSuccess && <ResponseMessage tipo="success" >{messageSuccess}</ResponseMessage>}
+      {messageError && <ResponseMessage tipo="error" >{messageError}</ResponseMessage>}
 
     </div>
   )

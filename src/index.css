@@ -431,3 +431,22 @@ body .modal {
 .saveCloud img:hover {
     cursor: pointer;
 }
+
+.floating-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.success-message {
+    background-color: #4caf50;
+}
+
+.error-message {
+    background-color: #af4c75;
+}

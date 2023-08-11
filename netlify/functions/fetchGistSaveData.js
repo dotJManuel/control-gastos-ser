@@ -42,19 +42,19 @@ exports.handler = async (event) => {
         if (actualizarResponse.ok) {
           return {
             statusCode: 200,
-            body: JSON.stringify({ message: 'Datos guardados correctamente en el Gist.' }),
+            body: JSON.stringify({ message: 'Datos guardados correctamente en el Gist.', code: 200 }),
           };
         } else {
           return {
             statusCode: actualizarResponse.status,
-            body: JSON.stringify({ error: `Error al actualizar el archivo del Gist: ${actualizarResponse.statusText}` }),
+            body: JSON.stringify({ error: `Error al actualizar el archivo del Gist: ${actualizarResponse.statusText}`, code: 500 }),
           };
         }
       }
     } catch (error) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: `Error al guardar los datos en el Gist: ${error.message}` }),
+        body: JSON.stringify({ error: `Error al guardar los datos en el Gist: ${error.message}`, code: 500 }),
       };
     }
   };
